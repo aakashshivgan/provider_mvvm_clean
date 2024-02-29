@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_mvvm_clean/provider/counter_provider.dart';
+import 'package:provider_mvvm_clean/provider/theme_provider.dart';
 
 class CounterPage extends StatefulWidget {
   const CounterPage({super.key});
@@ -25,9 +26,36 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     print('build');
     final countProvider = Provider.of<CounterProvider>(context);
+    // final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Consumer<ThemeProvider>(
+              builder: (context, value, child) {
+                return GestureDetector(
+                    onTap: () {
+                      value.toggleDark();
+                      if (value.isDarkMode == false) {
+                        value.setTheme(ThemeMode.dark);
+                      } else {
+                        value.setTheme(ThemeMode.light);
+                      }
+                    },
+                    child: value.themeMode == ThemeMode.light
+                        ? const Icon(
+                            Icons.light,
+                          )
+                        : const Icon(
+                            Icons.light,
+                            color: Colors.yellow,
+                          ));
+              },
+            ),
+          )
+        ],
         title: const Text('Counter'),
       ),
       body: Center(
