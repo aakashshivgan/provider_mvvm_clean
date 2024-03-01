@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_mvvm_clean/provider/counter_provider.dart';
 import 'package:provider_mvvm_clean/screen/counter_example.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_mvvm_clean/screen/stateless_as_stateful.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const CounterPage(),
+        home: StatelessToStatefullScreen(),
       ),
     );
   }
